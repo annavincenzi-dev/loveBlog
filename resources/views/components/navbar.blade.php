@@ -13,7 +13,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">Tutte le storie</a>
+            <a class="nav-link" href="{{route('allStories')}}">Tutte le storie</a>
           </li>
 
           <li class="nav-item">

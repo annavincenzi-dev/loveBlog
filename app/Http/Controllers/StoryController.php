@@ -25,5 +25,13 @@ class StoryController extends Controller
 
 
     }
+
+    public function allStories() {
+        
+        $stories = Story::all();
+        /* dd($stories); */
+        
+        return view('stories/allStories', compact('stories'));
+    }
     
 }
