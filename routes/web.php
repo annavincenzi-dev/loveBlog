@@ -12,3 +12,6 @@ Route::post('/writeStory/submit', [StoryController::class, 'storeStory'])->name(
 
 //PAGINA CON TUTTE LE STORIE
 Route::get('/allStories', [StoryController::class, 'allStories'])->name('allStories');
+
+//PAGINA DETTAGLIO DI OGNI STORIA
+Route::get('/story/{id}', [StoryController::class, 'showStory'])->name('showStory');

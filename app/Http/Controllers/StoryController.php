@@ -33,5 +33,12 @@ class StoryController extends Controller
         
         return view('stories/allStories', compact('stories'));
     }
+
+    public function showStory($id) {
+        $story = Story::find($id);
+        /* dd($id); */
+        return view('stories/story', compact('story'));
+        
+    }
     
 }

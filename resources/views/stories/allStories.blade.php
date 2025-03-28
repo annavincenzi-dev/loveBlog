@@ -13,6 +13,8 @@
             <div class="card-footer">
                 <small class="text-muted">{{$story->author}}</small>
             </div>
+
+            <a href="{{route('showStory', $story->id)}}" class="btn btn-primary"></a>
         </div>
     @endforeach                            
 
