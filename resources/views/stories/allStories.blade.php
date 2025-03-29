@@ -11,7 +11,7 @@
                 <p class="card-text">{{$story->text}}</p>
             </div>
             <div class="card-footer">
-                <small class="text-muted">{{$story->author}}</small>
+                <small class="text-muted">{{$story->author->name}}</small>
             </div>
 
             <a href="{{route('showStory', $story->id)}}" class="btn btn-primary"></a>

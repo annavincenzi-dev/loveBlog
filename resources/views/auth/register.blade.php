@@ -34,6 +34,11 @@
     
         <button type="submit" class="btn btn-primary">Registrati</button>
     </form>
+
+    <form action="{{ route('logout') }}" method="POST" id="logout">
+        @csrf
+    
+    </form>
     
 
     </x-layout>

@@ -8,8 +8,8 @@
     @csrf
 
     <div class="mb-3">
-        <label for="author" class="form-label">Autore della storia</label>
-        <input type="text" class="form-control" id="author" name="author">
+        <label for="written_by" class="form-label">Autore della storia</label>
+        <input type="text" class="form-control" id="written_by" name="written_by" readonly value="{{auth()->user()->name}}" placeholder="{{auth()->user()->name}}">
     
     </div>
 

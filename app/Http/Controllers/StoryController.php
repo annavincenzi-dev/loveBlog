@@ -14,31 +14,38 @@ class StoryController extends Controller
     }
 
     public function storeStory(Request $request) {
+        
+    $user = auth()->user();  // Ottieni l'utente loggato
 
-        $story = new Story();
-        $story->title = $request->title;
-        $story->author = $request->author;  
-        $story->text = $request->text;
+    $story = new Story();
+    $story->title = $request->title;
+    $story->written_by = $user->name;  
+    $story->text = $request->text;
+    $story->user_id = $user->id;  // Associa l'ID dell'utente alla storia
 
-        $story->save();
-        return redirect()->route('homepage')->with('success', 'Nuova storia creata con successo!');
+    $story->save();
 
+    return redirect()->route('homepage')->with('success', 'Nuova storia creata con successo!');
 
     }
 
     public function allStories() {
         
-        $stories = Story::all();
-        /* dd($stories); */
+        $stories = Story::with('author')->get();
         
         return view('stories/allStories', compact('stories'));
     }
 
     public function showStory($id) {
-        $story = Story::find($id);
+        
+        $story = Story::with('author')->find($id);
         /* dd($id); */
-        return view('stories/story', compact('story'));
+        /* dd($story->author); */
+        /* dd($story->author->profile_photo); */
+        return view('stories.story', compact('story'));
         
     }
+
+    
     
 }

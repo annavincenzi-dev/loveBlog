@@ -4,7 +4,15 @@
 
 <h3>Hai una storia d'amore da raccontare? Un colpo di fulmine, un cuore spezzato o un finale inaspettato? Scrivilo! Il tuo racconto potrebbe emozionare, far riflettere o aiutare qualcun altro a capire il proprio cuore.</h3>
 
+@auth
 <a href="{{route('writeStory')}}">Scrivici la tua storia</a>
+@endauth
+
+@guest
+<a href="{{route('register')}}">Scrivici la tua storia</a>
+@endguest
+
+
 
 <h3>Leggi le storie più pazze, romantiche e heartbreak di chi, come te, vive l'amore al massimo! Che sia un colpo di fulmine, un ex da dimenticare o un finale da favola… qui trovi tutto il drama che vuoi!
 

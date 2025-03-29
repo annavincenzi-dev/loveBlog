@@ -5,4 +5,11 @@ Ecco i passaggi che ho eseguito:
 2- ho creato un controller di registrazione personalizzato che include anche l'inserimento della foto profilo. L'ho costruito con l'aiuto di chatGPT seguendo ogni passaggio: validazione dei dati, caricamento della profile pic, creazione ed autenticazione automatica dell'utente.
 3- infine, ho creato delle rotte personalizzate relative al nuovo controller e le ho inserite nella vista register.
 
+Successivamente ho voluto collegare la foto profilo ad ogni storia scritta, in modo che all'apertura della pagina dettaglio si visualizzi la foto profilo dell'utente che ha scritto la storia. In modo simile, voglio che il nome dell'autore della storia (written_by) sia direttamente collegato all'utente loggato. Anche per questa feature ho utilizzato la documentazione e vari forum online, incontrando tutt'altro che poche difficoltà (a cui ho rimediato facendomi spiegare ogni passaggio da chat gpt). 
+
+Alla fine, ecco i passaggi che ho eseguito:
+- Ho creato una relazione tra la tabella stories e la tabella users. 
+- Ho aggiunto ad ogni storia un campo user_id che farà riferimento all'ID dell'utente.
+- Nella vista della storia, ho mostrato il nome dell'autore e la sua foto profilo, utilizzando il campo profile_photo dell'utente, con un'immagine avatar di default se non è presente.
+
 

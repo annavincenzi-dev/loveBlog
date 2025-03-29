@@ -16,21 +16,37 @@
             <a class="nav-link" href="{{route('allStories')}}">Tutte le storie</a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('writeStory')}}">Scrivici la tua storia</a>
-          </li>
+          
 
+          @guest
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Ospite
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{{route('register')}}">Registrati</a></li>
-              <li><a class="dropdown-item" href="#">Login</a></li>
-              {{-- <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li> --}}
+              <li><a class="dropdown-item" href="{{route('login')}}">Login</a></li>
             </ul>
           </li>
+          @endguest
+
+          @auth
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Benvenut*, {{auth()->user()->name}}
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{{route('writeStory')}}">Scrivici la tua storia</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.querySelector('#logout').submit();">Logout</a></li>
+            </ul>
+          </li>
+          
+          <form action="{{ route('logout') }}" method="POST" id="logout">
+            @csrf
+          </form>
+
+          @endauth
          
         </ul>
        

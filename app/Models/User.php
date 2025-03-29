@@ -46,4 +46,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+
+    //COLLEGAMENTO TRA MODELLO STORY E USER
+        public function stories()
+    {
+        return $this->hasMany(Story::class);
+    }
 }
