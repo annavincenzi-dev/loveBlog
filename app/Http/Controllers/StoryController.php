@@ -5,8 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Story;
 use Illuminate\Http\Request;
 
-class StoryController extends Controller
+class StoryController extends Controller implements hasMiddleware
 {
+    public static function middleware() {
+        return [
+            new Middleware('auth', except: ['allStories', 'showStory'])
+        ];
+    
+    }
+
     public function writeStory() {
 
         
