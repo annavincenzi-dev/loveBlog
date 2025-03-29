@@ -12,4 +12,6 @@ Alla fine, ecco i passaggi che ho eseguito:
 - Ho aggiunto ad ogni storia un campo user_id che farà riferimento all'ID dell'utente.
 - Nella vista della storia, ho mostrato il nome dell'autore e la sua foto profilo, utilizzando il campo profile_photo dell'utente, con un'immagine avatar di default se non è presente.
 
+Ho preferito modificare il nome della colonna 'author' prima presente nella table stories in 'written_by' per non confonderla con la relazione stories/users (chiamata appunto author).
+
 

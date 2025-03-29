@@ -15,13 +15,13 @@ class StoryController extends Controller
 
     public function storeStory(Request $request) {
         
-    $user = auth()->user();  // Ottieni l'utente loggato
+    $user = auth()->user();  
 
     $story = new Story();
     $story->title = $request->title;
     $story->written_by = $user->name;  
     $story->text = $request->text;
-    $story->user_id = $user->id;  // Associa l'ID dell'utente alla storia
+    $story->user_id = $user->id;  
 
     $story->save();
 

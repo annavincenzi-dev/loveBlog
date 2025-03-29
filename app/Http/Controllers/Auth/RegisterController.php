@@ -18,29 +18,39 @@ class RegisterController extends Controller
 
     public function registerSubmit(Request $request)
     {
-        // Validazione dei dati, inclusa la foto profilo
+        
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
-            'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'profile_photo' => 'image|max:2048',
+        ],
+        [
+            'profile_photo.image' => 'File di tipo immagine richiesto.',
+            'profile_photo.max' => 'Dimensione massima: 2MB.',
+            'name.required' => 'Il campo Nome è obbligatorio.',
+            'email.required' => 'Il campo Email è obbligatorio.',
+            'email.email' => 'Formato email valido richiesto.',
+            'email.unique' => 'Esiste già un utente registrato con questa email.',
+            'password.required' => 'Il campo Password è obbligatorio.',
+            'password.confirmed' => 'Le password non corrispondono.',
         ]);
 
-        // Caricamento della foto profilo
+       
         $path = $request->file('profile_photo')->store('profile_photos', 'public');
 
-        // Creazione dell'utente
+       
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'profile_photo' => $path,  // Salvataggio del percorso della foto
+            'profile_photo' => $path,  
         ]);
 
-        // Autenticazione dell'utente
+        
         auth()->login($user);
 
-        // Redirect alla homepage
+       
         return redirect()->route('homepage');
     }
 }
