@@ -1,3 +1,31 @@
-h1{
-    color: red;
+:root{
+    --bg1 : #F9C8D2;
+    --bg2 : #F6E27F;
+    --bg3 : #A8D5BA;
+    --tlt : #F08080;
+    --txt : #4B4B4B;
 }
+
+.bg1{
+    background-color: var(--bg1);
+}
+.bg2{
+    background-color: var(--bg2);
+}
+.bg3{
+    background-color: var(--bg3);
+}
+.tlt{
+    color: var(--tlt);
+}
+.txt{
+    color: var(--txt);
+}
+
+.tltFont{
+    font-family: Russo One;
+}
+
+.txtFont{ 
+    font-family: Roboto Mono;   
+}   
