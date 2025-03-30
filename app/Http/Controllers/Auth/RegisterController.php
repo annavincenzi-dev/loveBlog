@@ -23,7 +23,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
-            'profile_photo' => 'image|max:2048',
+            'profile_photo' => 'nullable|image|max:2048',
         ],
         [
             'profile_photo.image' => 'File di tipo immagine richiesto.',
@@ -36,10 +36,13 @@ class RegisterController extends Controller
             'password.confirmed' => 'Le password non corrispondono.',
         ]);
 
-       
-        $path = $request->file('profile_photo')->store('profile_photos', 'public');
+        $path = null;
 
        
+        if ($request->hasFile('profile_photo')) {
+            $path = $request->file('profile_photo')->store('profile_pictures', 'public');
+        }
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

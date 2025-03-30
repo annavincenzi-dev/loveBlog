@@ -1,22 +1,54 @@
 <x-layout>
 
-    <h1>Tutte le nostre storie</h1>
+    <div class="container-fluid">
+        
+        <div class="row row align-items-center mt-5 p-0 justify-content-center w-100">
 
-    @foreach ($stories as $story)
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">{{$story->title}}</h5>
+            <div class="col-11">
+
+                <h1 class="text-center tlt tltFont">Tutte le nostre storie</h1>
+
+
             </div>
+
+        
+            
+
+        </div>
+
+        <div class="row justify-content-evenly align-items-center">
+
+            @foreach ($stories as $story)
+        <div class="card col-3 m-3">
+
+            <div class="card-header">
+                <h5 class="card-title tlt tltFont fs-5">{{$story->title}}</h5>
+            </div>
+
             <div class="card-body">
-                <p class="card-text">{{$story->text}}</p>
+                <p class="card-text text-truncate txt txtFont fs-6">"{{$story->text}}"</p>
             </div>
             <div class="card-footer">
-                <small class="text-muted">{{$story->author->name}}</small>
+                <small class="text-muted txt txtFont">{{$story->author->name}}</small>
             </div>
 
-            <a href="{{route('showStory', $story->id)}}" class="btn btn-primary"></a>
+            <a href="{{route('showStory', $story->id)}}" class="homeLink fw-light mb-2 txt txtFont fs-6">Leggi la storia completa</a>
         </div>
-    @endforeach                            
+        @endforeach
+
+
+                
+        </div>
+
+        
+
+    
+
+    </div>
+
+    
+
+                               
 
 
 
