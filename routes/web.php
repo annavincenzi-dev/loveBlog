@@ -15,7 +15,14 @@ Route::post('/writeStory/submit', [StoryController::class, 'storeStory'])->name(
 Route::get('/allStories', [StoryController::class, 'allStories'])->name('allStories');
 
 //PAGINA DETTAGLIO DI OGNI STORIA
-Route::get('/story/{id}', [StoryController::class, 'showStory'])->name('showStory');
+Route::get('/story/{story}', [StoryController::class, 'showStory'])->name('showStory');
 
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('register', [RegisterController::class, 'registerSubmit'])->name('registerSubmit');
+
+//ROTTE PER MODIFICARE LA STORIA
+Route::get('/edit/{story}', [StoryController::class, 'edit'])->name('edit');
+Route::put('/edit/{story}', [StoryController::class, 'update'])->name('update');
+
+//ROTTE PER ELIMINARE LA STORIA
+Route::delete('/delete/{story}', [StoryController::class, 'destroy'])->name('delete');

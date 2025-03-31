@@ -33,7 +33,8 @@
                 <textarea name="text" id="text" cols="30" rows="10" class="form-control @error('text') is-invalid @enderror"></textarea>
               </div>
 
-              <button type="submit" class="homeLink"">INVIA</button>
+              <button type="submit" class="homeLink"">Invia</button>
+              <a href="{{route('homepage')}}" class="homeLink">Annulla</a>
 
 
         </form>

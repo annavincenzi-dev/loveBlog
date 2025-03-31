@@ -56,6 +56,36 @@ class StoryController extends Controller implements hasMiddleware
         
     }
 
+    public function edit(Story $story) {
+        
+        return view('stories.edit', compact('story'));
+    }
+
+    public function update(Request $request, Story $story) {
+        
+        if (auth()->user()->id == $story->user_id) {
+
+            $story->update([
+                'title' => $request->title,
+                'text' => $request->text,
+            ]);
+
+            return redirect()->route('homepage')->with('success', 'Storia aggiornata con successo!');
+        }
+        
+        return redirect()->route('homepage')->with('error', 'Non hai il permesso per modificare questa storia!');
+    }
+
+    public function destroy(Story $story) {
+        
+        if (auth()->user()->id == $story->user_id) {
+            $story->delete();
+            return redirect()->route('homepage')->with('success', 'Storia eliminata con successo!');
+        }
+        
+        return redirect()->route('homepage')->with('error', 'Non hai il permesso per eliminare questa storia!');
+    }
+
     
     
 }

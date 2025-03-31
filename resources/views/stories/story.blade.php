@@ -46,6 +46,39 @@
             
 
         </div>
+
+        <div class="row">
+            <div class="col-6">
+                <a href="{{route('allStories')}}" class="homeLink">Torna alle storie</a>
+            </div>
+           
+            @auth
+
+            @if (Auth::user()->id == $story->user_id)    
+
+            <div class="col-6">
+                
+                <div class="d-flex justify-content-center align-items-center flex-column">
+                    
+                    <a href="{{route('edit', compact('story'))}}" class="homeLink">Modifica la storia</a>
+
+                    <a href="{{route('delete', compact('story'))}}" class="homeLink" onclick="event.preventDefault(); document.querySelector('#delete-form').submit();">Elimina la storia</a>
+
+
+                </div>
+                
+                
+
+            </div>
+
+            @endif
+
+            @endauth
+
+        
+
+
+        </div>
         
         
     
@@ -53,6 +86,8 @@
 
 
     </div>
+
+    <form action="{{route('delete', compact('story'))}}" method="POST" id="delete-form">@method('DELETE')@csrf</form>
 
    
 
