@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Story;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
