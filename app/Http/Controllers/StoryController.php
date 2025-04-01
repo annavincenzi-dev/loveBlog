@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Story;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -100,6 +101,15 @@ class StoryController extends Controller implements hasMiddleware
         }
         
         return redirect()->route('homepage')->with('error', 'Non hai il permesso per eliminare questa storia!');
+    }
+
+    /* funzione per mostrare le storie di un utente */
+    public function myStories(User $user) {
+
+        $user->name = $user->name;
+
+        return view('stories.myStories', compact('user'));
+        
     }
 
     

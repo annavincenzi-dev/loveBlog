@@ -26,3 +26,6 @@ Route::put('/edit/{story}', [StoryController::class, 'update'])->name('update');
 
 //ROTTE PER ELIMINARE LA STORIA
 Route::delete('/delete/{story}', [StoryController::class, 'destroy'])->name('delete');
+
+//ROTTA PER LA PAGINA STORIE DI UN UTENTE
+Route::get('/myStories/{user}', [StoryController::class, 'myStories'])->name('myStories');
