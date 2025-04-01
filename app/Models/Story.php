@@ -3,14 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Story extends Model
 {
-    protected $fillable = ['title', 'text', 'user_id'];  // Aggiungi user_id
+    protected $fillable = ['title', 'text', 'user_id'];
 
-    // Relazione con l'utente (autore)
-    public function author()
+    //relazione con User
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');  // La relazione è basata su user_id
+        return $this->belongsTo(User::class);
     }
 }

@@ -11,15 +11,15 @@
 
             <div class="col-5 text-center">
 
-                <h2 class="txt txtFont fs-4"> <strong>Scritta da: </strong>{{ $story->author->name }}</h2>
+                <h2 class="txt txtFont fs-4"> <strong>Scritta da: </strong>{{ $story->user->name }}</h2>
 
             </div>
 
             <div class="col-2">
 
-                @if ($story->author->profile_photo)
+                @if ($story->user->profile_photo)
             
-            <img src="{{ Storage::url($story->author->profile_photo) }}" alt="Foto autore" class="rounded-circle storyPic">
+            <img src="{{ Storage::url($story->user->profile_photo) }}" alt="Foto autore" class="rounded-circle storyPic">
     
         @else
     

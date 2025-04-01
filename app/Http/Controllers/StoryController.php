@@ -10,6 +10,8 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 
 class StoryController extends Controller implements hasMiddleware
 {
+
+    /* Implementazione del middleware */
     public static function middleware() {
         return [
             new Middleware('auth', except: ['allStories', 'showStory'])
@@ -17,54 +19,65 @@ class StoryController extends Controller implements hasMiddleware
     
     }
 
+    /* Funzione per inserire una nuova storia */
     public function writeStory() {
 
-        
         return view('stories/writeStory');
+
     }
 
-    public function storeStory(Request $request) {
-        
-    $user = auth()->user();  
+    /* Funzione per salvare una nuova storia */
+    public function storeStory(Request $request) {  
 
+        /* creazione di una nuova storia sul modello Story */
     $story = new Story();
-    $story->title = $request->title;
-    $story->written_by = $user->name;  
+        /* assegnazione dei valori */
+    $story->title = $request->title;  
     $story->text = $request->text;
-    $story->user_id = $user->id;  
-
+        /* l'ID dell'utente loggato sarà lo user_id della storia*/
+    $story->user_id = Auth::id();
+    
+    
+        /* salvataggio della nuova storia nel database */
     $story->save();
 
     return redirect()->route('homepage')->with('success', 'Nuova storia creata con successo!');
 
     }
 
+    /* funzione per mostrare tutte le storie */
     public function allStories() {
         
-        $stories = Story::with('author')->get();
+        /* creazione della collezione di storie dal modello Story */
+        $stories = Story::all();
         
+
         return view('stories/allStories', compact('stories'));
     }
 
-    public function showStory($id) {
+    /* funzione per mostrare ogni singola storia con una rotta parametrica */
+    public function showStory(Story $story) {
         
-        $story = Story::with('author')->find($id);
-        /* dd($id); */
-        /* dd($story->author); */
-        /* dd($story->author->profile_photo); */
+
         return view('stories.story', compact('story'));
         
     }
 
+
+    /* funzione per modificare una storia */
     public function edit(Story $story) {
         
         return view('stories.edit', compact('story'));
+
     }
 
+    /* funzione per aggiornare una storia */
     public function update(Request $request, Story $story) {
         
+        /* controllo che permette solo all'utente autore di modificare la storia (se il suo ID corrisponde allo user_id della storia) */
         if (auth()->user()->id == $story->user_id) {
 
+            /* aggiorno il database con le modifiche */
             $story->update([
                 'title' => $request->title,
                 'text' => $request->text,
@@ -72,12 +85,14 @@ class StoryController extends Controller implements hasMiddleware
 
             return redirect()->route('homepage')->with('success', 'Storia aggiornata con successo!');
         }
-        
+            /* se l'utente non corrisponde: */
         return redirect()->route('homepage')->with('error', 'Non hai il permesso per modificare questa storia!');
     }
 
+    /* funzione per eliminare una storia */
     public function destroy(Story $story) {
         
+        /* verifico che utente loggato e user_id della storia corrispondano */
         if (auth()->user()->id == $story->user_id) {
             $story->delete();
             return redirect()->route('homepage')->with('success', 'Storia eliminata con successo!');

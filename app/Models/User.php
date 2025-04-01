@@ -3,9 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -49,8 +50,9 @@ class User extends Authenticatable
 
 
 
-    //COLLEGAMENTO TRA MODELLO STORY E USER
-        public function stories()
+    //Relazione con Story
+    
+        public function stories(): HasMany
     {
         return $this->hasMany(Story::class);
     }
