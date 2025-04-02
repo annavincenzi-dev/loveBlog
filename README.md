@@ -19,7 +19,7 @@ Alla fine, ecco i passaggi che ho eseguito:
 
 
 
-La nuova relazione che ho creato è fra la tabella Stories e la nuova tabella Category. La tabella stories prenderà come foreign key l'id di categories. Successivamente, per popolare il database con le varie categorie (fram le quali l'utente è forzato a scegliere tramite un input), ho lanciato il comando php artisan tinker e inserito i vari record con il nomi delle categorie possibili da me scelti.
+La nuova relazione che ho creato è fra la tabella Stories e la nuova tabella Categories. La tabella stories prenderà come foreign key l'id di categories. Successivamente, per popolare il database con le varie categorie (fram le quali l'utente è forzato a scegliere tramite un input), ho lanciato il comando php artisan tinker e inserito i vari record con il nomi delle categorie possibili da me scelti.
 
 
 FRONT-END
