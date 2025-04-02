@@ -35,7 +35,18 @@
                 <textarea name="text" id="text" cols="30" rows="10" class="form-control @error('text') is-invalid @enderror"></textarea>
               </div>
 
-              <button type="submit" class="homeLink"">Invia</button>
+              {{-- Select Categoria --}}
+              <div class="mb-3 d-flex justify-content-center align-items-center flex-column">
+              <label for="category_id" class="form-label w-25 text-center my-2">Categoria</label>
+              <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                <option value="" disabled selected>Seleziona una categoria</option>
+                @foreach ($categories as $category)
+                <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+              </select>
+</div>
+
+              <button type="submit" class="homeLink">Invia</button>
               <a href="{{route('homepage')}}" class="homeLink">Annulla</a>
 
 

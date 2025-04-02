@@ -90,6 +90,8 @@
     {{-- FORM DI CANCELLAZIONE STORIA --}}
     <form action="{{route('delete', compact('story'))}}" method="POST" id="delete-form">@method('DELETE')@csrf</form>
 
+    
+
    
 
 </x-layout>

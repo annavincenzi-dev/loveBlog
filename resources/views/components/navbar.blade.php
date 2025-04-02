@@ -16,6 +16,20 @@
             <a class="nav-link @if (Route::is('allStories')) active @endif" href="{{route('allStories')}}">Tutte le storie</a>
           </li>
 
+          {{-- dropdown delle categorie --}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Categorie
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{route('storiesByCategory', ['category' => 1])}}">Amore Difficile</a></li>
+                <li><a class="dropdown-item" href="{{route('storiesByCategory', ['category' => 2])}}">Primo Amore</a></li>
+                <li><a class="dropdown-item" href="{{route('storiesByCategory', ['category' => 3])}}">Amicizia che Cambia</a></li>
+                <li><a class="dropdown-item" href="{{route('storiesByCategory', ['category' => 4])}}">Amore Segreto</a></li>
+                <li><a class="dropdown-item" href="{{route('storiesByCategory', ['category' => 5])}}">Anime Gemelle</a></li>
+            </ul>
+        </li>
+
           
 
           @guest
@@ -46,6 +60,10 @@
           </form>
 
           @endauth
+
+
+          
+          
          
         </ul>
        

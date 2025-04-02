@@ -29,3 +29,6 @@ Route::delete('/delete/{story}', [StoryController::class, 'destroy'])->name('del
 
 //ROTTA PER LA PAGINA STORIE DI UN UTENTE
 Route::get('/myStories/{user}', [StoryController::class, 'myStories'])->name('myStories');
+
+//ROTTA PER LA PAGINA STORIE DI UNA CATEGORIA
+Route::get('/storiesByCategory/{category}', [StoryController::class, 'storiesByCategory'])->name('storiesByCategory');

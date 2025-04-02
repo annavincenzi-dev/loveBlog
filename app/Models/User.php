@@ -48,12 +48,9 @@ class User extends Authenticatable
         ];
     }
 
-
-
-    //Relazione con Story
-    
+        //Relazione con Story
         public function stories(): HasMany
-    {
+    {   /* definisco la relazione one to many tra User e Story */
         return $this->hasMany(Story::class);
     }
 }

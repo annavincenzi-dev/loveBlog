@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Story;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controllers\Middleware;
@@ -24,18 +25,24 @@ class StoryController extends Controller implements hasMiddleware
     /* Funzione per inserire una nuova storia */
     public function writeStory() {
 
-        return view('stories/writeStory');
+        $categories = Category::all();
+
+        /* dd($categories); */
+
+        return view('stories/writeStory', compact('categories'));
 
     }
 
     /* Funzione per salvare una nuova storia */
-    public function storeStory(Request $request) {  
+    public function storeStory(Request $request) {
+    
 
         /* creazione di una nuova storia sul modello Story */
     $story = new Story();
         /* assegnazione dei valori */
     $story->title = $request->title;  
     $story->text = $request->text;
+    $story->category_id = $request->category_id;
         /* l'ID dell'utente loggato sarà lo user_id della storia*/
     $story->user_id = Auth::id();
     
@@ -106,9 +113,20 @@ class StoryController extends Controller implements hasMiddleware
     /* funzione per mostrare le storie di un utente */
     public function myStories(User $user) {
 
-        $user->name = $user->name;
 
         return view('stories.myStories', compact('user'));
+        
+    }
+
+    /* funzione per mostrare le storie di una categoria */
+    public function storiesByCategory(Category $category) {
+
+        // Ottiengo le storie della categoria e le salvo in $stories
+        $stories = Story::where('category_id', $category->id)->get();
+    
+        // Passa sia la categoria che le storie alla vista
+        return view('stories.storiesByCategory', compact('category', 'stories'));
+        
         
     }
 
