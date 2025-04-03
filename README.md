@@ -10,9 +10,16 @@ Successivamente ho voluto collegare la foto profilo ad ogni storia scritta, in m
 Alla fine, ecco i passaggi che ho eseguito:
 - Ho creato una relazione tra la tabella stories e la tabella users. 
 - Ho aggiunto ad ogni storia un campo user_id che farà riferimento all'ID dell'utente.
-- Nella vista della storia, ho mostrato il nome dell'autore e la sua foto profilo, utilizzando il campo profile_photo dell'utente, con un'immagine avatar di default se non è presente.
+- Nella vista della storia, ho mostrato il nome dell'autore e la sua foto profilo, utilizzando il campo profile_photo dell'utente, con un'immagine avatar di default se non è presente. 
 
-Ho preferito modificare il nome della colonna 'author' prima presente nella table stories in 'written_by' per non confonderla con la relazione stories/users (chiamata appunto author).
+
+//
+//
+//
+
+
+
+La nuova relazione che ho creato è fra la tabella Stories e la nuova tabella Categories. La tabella stories prenderà come foreign key l'id di categories. Successivamente, per popolare il database con le varie categorie (fram le quali l'utente è forzato a scegliere tramite un input), ho lanciato il comando php artisan tinker e inserito i vari record con il nomi delle categorie possibili da me scelti.
 
 
 FRONT-END
