@@ -41,12 +41,14 @@ class StoryController extends Controller implements hasMiddleware
     /* Funzione per salvare una nuova storia */
     public function storeStory(StoreStoryRequest $request) {
 
-        /* dd($request); */
+        dd($request->category);
 
         /* creo una nuova storia */
         $story = new Story();
         $story->title = $request->title;
         $story->text = $request->text;
+
+
     
         /* associo la categoria */
         $story->category()->associate($request->category);

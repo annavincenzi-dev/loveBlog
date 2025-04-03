@@ -37,8 +37,8 @@
 
               {{-- Select Categoria --}}
               <div class="mb-3 d-flex justify-content-center align-items-center flex-column">
-              <label for="category_id" class="form-label w-25 text-center my-2">Categoria</label>
-              <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
+              <label for="categories" class="form-label w-25 text-center my-2">Categoria</label>
+              <select name="category" id="categories" class="form-control @error('category') is-invalid @enderror">
                 <option value="" disabled selected>Seleziona una categoria</option>
                 @foreach ($categories as $category)
                 <option value="{{$category->id}}">{{$category->name}}</option>

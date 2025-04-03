@@ -24,7 +24,6 @@ class StoreStoryRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'text' => 'required|string',
-            'category_id' => 'required|exists:categories,id'
         ];
     }
 }
