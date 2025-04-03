@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        $tags = ['Cuori contraddittori', 'Sfide da superare', 'Speranza', 'Dolcezza', 'Confusione', 'Segreti', 'Emozioni non espresse', 'Crescita', 'Destino', 'Primo battito di cuore'];
+        $tags = ['CuoriContraddittori', 'SfidDaSuperare', 'Speranza', 'Dolcezza', 'Confusione', 'Segreti', 'EmozioniNonEspresse', 'Crescita', 'Destino', 'PrimoBattitoDiCuore'];
 
         foreach($tags as $tag){
             Tag::create([

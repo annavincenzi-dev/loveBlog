@@ -40,29 +40,30 @@ class StoryController extends Controller implements hasMiddleware
 
     /* Funzione per salvare una nuova storia */
     public function storeStory(StoreStoryRequest $request) {
+
+        /* dd($request); */
+
+        /* creo una nuova storia */
+        $story = new Story();
+        $story->title = $request->title;
+        $story->text = $request->text;
+    
+        /* associo la categoria */
+        $story->category()->associate($request->category);
+        
+        /* associo lo user (sarà quello loggato ora) */
+        $story->user_id = Auth::id();
+    
+        /* salvo la storia nel database */
+        $story->save();
+    
+        /* associo i tag indicati dall'utente alla storia */
+        $story->tags()->attach($request->tags);
     
     
-        /* creazione di una nuova storia sul modello Story */
-    $story = new Story();
-        /* assegnazione dei valori */
-    $story->title = $request->title;  
-    $story->text = $request->text;
-
-    $story->category()->associate($request->category);
-    $article->tags()->attach($request->tags);
-    /* $story->category_id = $request->category_id; */
-        /* l'ID dell'utente loggato sarà lo user_id della storia*/
-    $story->user_id = Auth::id();
-
-
-    
-    
-        /* salvataggio della nuova storia nel database */
-    $story->save();
-
-    return redirect()->route('homepage')->with('success', 'Nuova storia creata con successo!');
-
+        return redirect()->route('homepage')->with('success', 'Nuova storia creata con successo!');
     }
+    
 
     /* funzione per mostrare tutte le storie */
     public function allStories() {
@@ -77,7 +78,7 @@ class StoryController extends Controller implements hasMiddleware
     /* funzione per mostrare ogni singola storia con una rotta parametrica */
     public function showStory(Story $story) {
         
-
+        $tags = Tag::all();
         return view('stories.story', compact('story'));
         
     }

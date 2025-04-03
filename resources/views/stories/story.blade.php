@@ -20,6 +20,8 @@
 
             </div>
 
+            
+
             <div class="col-2">
                 
                 <a href="{{route('myStories', ['user' => $story->user])}}" class="txt txtFont fs-4 text-decoration-none">
@@ -48,6 +50,20 @@
             <div class="col-10 text-center">
 
                 <p class="txt txtFont">{{ $story->text }}</p>
+
+            </div>
+           
+        </div>
+
+        <div class="row justify-content-evenly">
+
+            <div class="col-10 text-center d-flex justify-content-evenly">
+
+                @foreach ($story->tags as $tag)
+
+                <p class="tlt txtFont fs-6">#{{ $tag->name }}</p>
+
+                @endforeach
 
             </div>
            

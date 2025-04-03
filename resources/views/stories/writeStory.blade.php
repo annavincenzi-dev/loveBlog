@@ -53,7 +53,7 @@
                 <select name="tags[]" id="tags" class="form-control @error('tags') is-invalid @enderror" multiple size='5'>
               
                   @foreach ($tags as $tag)
-                    <option value="{{ $tag->id }}" class="tag">{{ $tag->name }}</option>
+                    <option value="{{ $tag->id }}" class="tag">#{{ $tag->name }}</option>
                   @endforeach
                 </select>
 
