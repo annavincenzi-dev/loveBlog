@@ -44,10 +44,26 @@
                 <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
               </select>
-</div>
+              </div>
 
-              <button type="submit" class="homeLink">Invia</button>
-              <a href="{{route('homepage')}}" class="homeLink">Annulla</a>
+              {{-- Select Tag --}}
+              <div class="mb-3 d-flex justify-content-center align-items-center flex-column">
+                <label for="tags" class="form-label w-25 text-center my-2">Tags</label>
+                <h3 class="txtFont tlt text-center">Tieni premuto il tasto ctrl e seleziona i tag pertinenti alla tua storia</h3>
+                <select name="tags[]" id="tags" class="form-control @error('tags') is-invalid @enderror" multiple size='5'>
+              
+                  @foreach ($tags as $tag)
+                    <option value="{{ $tag->id }}" class="tag">{{ $tag->name }}</option>
+                  @endforeach
+                </select>
+
+
+                <div class="w-100 d-flex justify-content-evenly mt-3">
+                <button type="submit" class="homeLink">Invia</button>
+                <a href="{{route('homepage')}}" class="homeLink">Annulla</a>
+                </div>
+
+              
 
 
         </form>
@@ -55,6 +71,8 @@
         </div>
 
     </div>
+
+  </div>
 
 
 </x-layout>

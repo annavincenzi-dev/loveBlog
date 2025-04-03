@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\User;
-use App\Models\Story;
 
+use App\Models\Story;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,17 +28,20 @@ class StoryController extends Controller implements hasMiddleware
     public function writeStory() {
 
         $categories = Category::all();
+        $tags = Tag::all();
+
+        /* dd($tags); */
 
         /* dd($categories); */
 
-        return view('stories/writeStory', compact('categories'));
+        return view('stories/writeStory', compact('categories', 'tags'));
 
     }
 
     /* Funzione per salvare una nuova storia */
     public function storeStory(StoreStoryRequest $request) {
     
-
+    
         /* creazione di una nuova storia sul modello Story */
     $story = new Story();
         /* assegnazione dei valori */
@@ -45,9 +49,12 @@ class StoryController extends Controller implements hasMiddleware
     $story->text = $request->text;
 
     $story->category()->associate($request->category);
+    $article->tags()->attach($request->tags);
     /* $story->category_id = $request->category_id; */
         /* l'ID dell'utente loggato sarà lo user_id della storia*/
     $story->user_id = Auth::id();
+
+
     
     
         /* salvataggio della nuova storia nel database */

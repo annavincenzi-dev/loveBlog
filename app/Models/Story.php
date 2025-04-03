@@ -21,4 +21,9 @@ class Story extends Model
     {   /* definisco la relazione one to one tra Story e Category */
         return $this->belongsTo(Category::class);
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }
