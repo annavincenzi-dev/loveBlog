@@ -8,6 +8,7 @@ use App\Models\Story;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreStoryRequest;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
@@ -34,7 +35,7 @@ class StoryController extends Controller implements hasMiddleware
     }
 
     /* Funzione per salvare una nuova storia */
-    public function storeStory(Request $request) {
+    public function storeStory(StoreStoryRequest $request) {
     
 
         /* creazione di una nuova storia sul modello Story */
@@ -42,7 +43,9 @@ class StoryController extends Controller implements hasMiddleware
         /* assegnazione dei valori */
     $story->title = $request->title;  
     $story->text = $request->text;
-    $story->category_id = $request->category_id;
+
+    $story->category()->associate($request->category);
+    /* $story->category_id = $request->category_id; */
         /* l'ID dell'utente loggato sarà lo user_id della storia*/
     $story->user_id = Auth::id();
     
