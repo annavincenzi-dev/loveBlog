@@ -13,7 +13,7 @@ use App\Http\Requests\StoreStoryRequest;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
-class StoryController extends Controller implements hasMiddleware
+class StoryController extends Controller implements HasMiddleware
 {
 
     /* Implementazione del middleware */
@@ -34,14 +34,14 @@ class StoryController extends Controller implements hasMiddleware
 
         /* dd($categories); */
 
-        return view('stories/writeStory', compact('categories', 'tags'));
+        return view('stories.writeStory', compact('categories', 'tags'));
 
     }
 
     /* Funzione per salvare una nuova storia */
     public function storeStory(StoreStoryRequest $request) {
 
-        dd($request->category);
+        /* dd($request->category); */
 
         /* creo una nuova storia */
         $story = new Story();
@@ -74,14 +74,14 @@ class StoryController extends Controller implements hasMiddleware
         $stories = Story::all();
         
 
-        return view('stories/allStories', compact('stories'));
+        return view('stories.allStories', compact('stories'));
     }
 
     /* funzione per mostrare ogni singola storia con una rotta parametrica */
     public function showStory(Story $story) {
         
         $tags = Tag::all();
-        return view('stories.story', compact('story'));
+        return view('stories.story', compact('story', 'tags'));
         
     }
 

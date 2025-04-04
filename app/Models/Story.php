@@ -6,10 +6,11 @@ use App\Models\Tag;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Story extends Model
 {
-    protected $fillable = ['title', 'text', 'user_id'];
+    protected $fillable = ['title', 'text', 'user_id', 'category_id'];
 
     //relazione con User
     public function user(): BelongsTo
@@ -23,7 +24,7 @@ class Story extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function tags()
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
     }
