@@ -32,3 +32,6 @@ Route::get('/myStories/{user}', [StoryController::class, 'myStories'])->name('my
 
 //ROTTA PER LA PAGINA STORIE DI UNA CATEGORIA
 Route::get('/storiesByCategory/{category}', [StoryController::class, 'storiesByCategory'])->name('storiesByCategory');
+
+//ROTTA PER LA PAGINA STORIE CON UN TAG
+Route::get('/storiesByTag/{tag}', [StoryController::class, 'storiesByTag'])->name('storiesByTag');

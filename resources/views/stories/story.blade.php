@@ -61,7 +61,7 @@
 
                 @foreach ($story->tags as $tag)
 
-                <p class="tlt txtFont fs-6">#{{ $tag->name }}</p>
+                <a href="{{route('storiesByTag', ['tag' => $tag])}}" class="text-decoration-none"><p class="tlt txtFont fs-6 ">#{{ $tag->name }}</p></a> 
 
                 @endforeach
 

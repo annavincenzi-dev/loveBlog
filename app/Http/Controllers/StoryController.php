@@ -143,6 +143,13 @@ class StoryController extends Controller implements HasMiddleware
         
     }
 
-    
+    public function storiesByTag(Tag $tag) {
+
+        $stories = Story::whereHas('tags', function($query) use ($tag) {
+            $query->where('tag_id', $tag->id);
+        })->get();
+        return view('stories.storiesByTag', compact('tag', 'stories'));
+
+    }
     
 }
