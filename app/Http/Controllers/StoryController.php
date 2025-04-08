@@ -116,6 +116,7 @@ class StoryController extends Controller implements HasMiddleware
         
         /* verifico che utente loggato e user_id della storia corrispondano */
         if (auth()->user()->id == $story->user_id) {
+            $story->tags()->detach();
             $story->delete();
             return redirect()->route('homepage')->with('success', 'Storia eliminata con successo!');
         }
