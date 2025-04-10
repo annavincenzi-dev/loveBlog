@@ -1,4 +1,9 @@
 <x-layout>
+    @if(session('success'))
+    <div class="alert">
+        {{ session('success') }}
+    </div>
+    @endif
 
     <div class="container-fluid">
         

@@ -93,7 +93,7 @@ class StoryController extends Controller implements HasMiddleware
         if (auth()->user()->id == $story->user_id) {
             $story->tags()->detach();
             $story->delete();
-            return redirect()->route('homepage')->with('success', 'Storia eliminata con successo!');
+            return redirect()->route('allStories')->with('success', 'Storia eliminata con successo!');
         }
         
         return redirect()->route('homepage')->with('error', 'Non hai il permesso per eliminare questa storia!');
