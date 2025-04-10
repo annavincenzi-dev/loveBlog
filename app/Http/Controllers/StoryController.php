@@ -39,32 +39,7 @@ class StoryController extends Controller implements HasMiddleware
     }
 
     /* Funzione per salvare una nuova storia */
-    public function storeStory(StoreStoryRequest $request) {
-
-        /* dd($request->category); */
-
-        /* creo una nuova storia */
-        $story = new Story();
-        $story->title = $request->title;
-        $story->text = $request->text;
-
-
     
-        /* associo la categoria */
-        $story->category()->associate($request->category);
-        
-        /* associo lo user (sarà quello loggato ora) */
-        $story->user_id = Auth::id();
-    
-        /* salvo la storia nel database */
-        $story->save();
-    
-        /* associo i tag indicati dall'utente alla storia */
-        $story->tags()->attach($request->tags);
-    
-    
-        return redirect()->route('homepage')->with('success', 'Nuova storia creata con successo!');
-    }
     
 
     /* funzione per mostrare tutte le storie */
