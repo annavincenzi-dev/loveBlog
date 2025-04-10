@@ -11,12 +11,14 @@ use Illuminate\Support\Facades\Auth;
 
 class Create extends Component
 {
-    public $category;
-    public $tags;
-    #[Validate('required'|'min3')]
+    public $category_id;
+    public $tags_id;
+    #[Validate('required|min:3')]
     public $title= '';
-    #[Validate('required'|'min8')]
+    #[Validate('required|min:8')]
     public $text= '';
+
+    
 
     public function mount()
     {
@@ -28,16 +30,19 @@ class Create extends Component
 
     public function createStory()
     {
-        
+        /* dd($this->category, $this->tags , $this->title, $this->text);  */   
 
-        $story = new Story();
-        $story->title = $this->title;
-        $story->text = $this->text;
-        $story->category()->associate($this->category);
-        $story->user_id = Auth::id();
-        $story->save();
+        $story = Auth::user()->stories()->create([
+            'title'=>$this->title,
+            'text'=>$this->text,
+            'category_id'=>$this->category_id,
+        ]);
 
-        $story->tags()->attach($this->tags);
+        if ($this->tags_id) {
+            $story->tags()->attach($this->tags_id);  // Aggiungi i tag selezionati alla storia
+        }
+
+
         return redirect()->route('homepage')->with('success', 'Nuova storia creata con successo!');
     }
 
