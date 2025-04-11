@@ -1,6 +1,10 @@
 <div>
-    
-    <form wire:submit='createStory'>
+
+  <div class="row justify-content-center">
+
+    <div class="col-6">
+
+      <form wire:submit='createStory'>
 
         
 
@@ -25,7 +29,7 @@
           {{-- Select Categoria --}}
           <div class="mb-3 d-flex justify-content-center align-items-center flex-column">
           <label for="categories" class="form-label w-25 text-center my-2">Categoria</label>
-          <select name="category" id="categories" class="form-control @error('category') is-invalid @enderror"  wire:model='category_id'>
+          <select name="category" id="categories" class="form-control @error('category_id') is-invalid @enderror"  wire:model='category_id'>
             <option value="" disabled selected>Seleziona una categoria</option>
             @foreach ($this->categories as $category)
             <option value="{{$category->id}}">{{$category->name}}</option>
@@ -56,5 +60,11 @@
           
 
 
-    </form>
+      </form>
+
+    </div>
+
+  </div>
+    
+    
 </div>

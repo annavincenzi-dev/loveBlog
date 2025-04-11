@@ -1,12 +1,13 @@
 <x-layout>
-
-    <div class="container-fluid w-75 mx-auto mt-5 p-4 storyWrap">
         
+    <div class="w-75 mx-auto mt-5 p-4 storyWrap">
+
         <div class="row text-center">
 
             <h1 class="tlt tltFont">{{ $story->title }}</h1>
 
         </div>
+
 
         <div class="row align-items-center justify-content-end my-3">
 
@@ -99,7 +100,7 @@
             @endauth
 
         </div>
-        
+
     </div>
 
 

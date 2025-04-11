@@ -1,12 +1,8 @@
 <x-layout>
 
-    @if(session('success'))
-    <div class="alert">
-        {{ session('success') }}
-    </div>
-    @endif
+    <x-sessionAlert/>
 
-    <div class="containerfluid">
+    
 
         <div class="row align-items-center mt-5 p-0 justify-content-center w-100">
 
@@ -85,8 +81,6 @@
 
 
         </div>
-                
-    </div>
 
 
 
@@ -97,7 +91,7 @@
 
 
 
-<a href=""></a>
+
 
 
 

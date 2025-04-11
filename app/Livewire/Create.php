@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Auth;
 class Create extends Component
 {
     public $category_id;
-    public $tags_id;
+    public $tags_id = [];
+    public $categories;
+    public $tags = [];
     #[Validate('required|min:3')]
     public $title= '';
     #[Validate('required|min:8')]
@@ -26,6 +28,7 @@ class Create extends Component
         $tags = Tag::all();
         $this->categories = $categories;
         $this->tags = $tags;
+
     }
 
     public function createStory()
