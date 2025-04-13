@@ -89,7 +89,6 @@
                     
                             <a href="{{route('edit', compact('story'))}}" class="homeLink">Modifica la storia</a>
 
-                            <a href="{{route('delete', compact('story'))}}" class="homeLink" onclick="event.preventDefault(); document.querySelector('#delete-form').submit();">Elimina la storia</a>
 
                         </div>
                     

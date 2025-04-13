@@ -34,6 +34,10 @@ class Edit extends Component
 
     public function editStory() {
 
+        if (auth()->user()->id != $this->story->user_id) {
+            return redirect()->route('homepage')->with('error', 'Non hai il permesso per modificare questa storia!');
+        } else {
+            
         $this->validate();
 
         $this->story->update([
@@ -46,8 +50,23 @@ class Edit extends Component
         $this->story->tags()->sync($this->tags_id);
 
         return redirect()->route('homepage')->with('success', 'Storia aggiornata con successo!');
+
+        }
+
     }
 
+    public function deleteStory() {
+
+        if (auth()->user()->id != $this->story->user_id) {
+            return redirect()->route('homepage')->with('error', 'Non hai il permesso per eliminare questa storia!');
+        } else{
+
+        $this->story->tags()->detach();
+        $this->story->delete();
+
+        return redirect()->route('homepage')->with('success', 'Storia eliminata con successo!');
+        }
+    }
     
     
     public function render()

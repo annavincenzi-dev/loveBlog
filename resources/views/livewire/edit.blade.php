@@ -64,7 +64,12 @@
     
                 <div class="w-100 d-flex justify-content-evenly mt-3">
                 <button type="submit" class="homeLink">Invia</button>
+                
                 <a href="{{route('homepage')}}" class="homeLink">Annulla</a>
+                </div>
+
+                <div class="w-100 d-flex justify-content-evenly mt-3">
+                <button class="homeLink w-50" wire:click='deleteStory'>Elimina la storia</button>
                 </div>
     
     
