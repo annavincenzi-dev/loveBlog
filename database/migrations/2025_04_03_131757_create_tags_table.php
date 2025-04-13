@@ -7,9 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    
     public function up(): void
     {
         Schema::create('tags', function (Blueprint $table) {
@@ -18,13 +16,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        $tags = ['CuoriContraddittori', 'SfidDaSuperare', 'Speranza', 'Dolcezza', 'Confusione', 'Segreti', 'EmozioniNonEspresse', 'Crescita', 'Destino', 'PrimoBattitoDiCuore'];
-
-        foreach($tags as $tag){
-            Tag::create([
-                'name'=>$tag
-            ]);
-        }
+        
     }
 
     /**

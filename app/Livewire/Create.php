@@ -11,10 +11,13 @@ use Illuminate\Support\Facades\Auth;
 
 class Create extends Component
 {
+    #[Validate('required')]
     public $category_id;
+    #[Validate('required')]
     public $tags_id = [];
     public $categories;
     public $tags = [];
+    
     #[Validate('required|min:3')]
     public $title= '';
     #[Validate('required|min:8')]
@@ -33,7 +36,7 @@ class Create extends Component
 
     public function createStory()
     {
-        /* dd($this->category, $this->tags , $this->title, $this->text);  */   
+        $this->validate();
 
         $story = Auth::user()->stories()->create([
             'title'=>$this->title,
@@ -47,6 +50,17 @@ class Create extends Component
 
 
         return redirect()->route('homepage')->with('success', 'Nuova storia creata con successo!');
+    }
+
+    public function messages() {
+        return [
+            'title.required' => 'Il titolo è obbligatorio',
+            'text.required' => 'Il testo è obbligatorio',
+            'text.min' => 'Il testo deve avere almeno 8 caratteri',
+            'title.min' => 'Il titolo deve avere almeno 3 caratteri',
+            'category_id.required' => 'La categoria è obbligatoria',
+            'tags_id.required' => 'Inserisci almeno un tag',
+        ];
     }
 
     public function render()

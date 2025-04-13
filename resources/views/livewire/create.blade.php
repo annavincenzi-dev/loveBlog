@@ -17,36 +17,53 @@
         {{-- INPUT TITLE --}}
           <div class="mb-3 d-flex justify-content-center align-items-center flex-column">
             <label for="title" class="form-label w-25 text-center my-2">Titolo</label>
-            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" wire:model='title'>
+            <input type="text" class="form-control @error('title') invalid @enderror" id="title" name="title" wire:model='title'>
+              @error('title')
+              <div class="alert2">{{ $message }}</div>
+              @enderror
           </div>
+          
         
         {{-- INPUT TEXT --}}
           <div class="mb-3 d-flex justify-content-center align-items-center flex-column">
             <label for="text" class="form-label w-25 text-center my-2">Testo</label>
-            <textarea name="text" id="text" cols="30" rows="10" class="form-control @error('text') is-invalid @enderror" wire:model='text'></textarea>
+            <textarea name="text" id="text" cols="30" rows="10" class="form-control @error('text') invalid @enderror" wire:model='text'></textarea>
+            @error('text')
+          <div class="alert2">{{ $message }}</div>
+          @enderror
           </div>
+          
 
           {{-- Select Categoria --}}
           <div class="mb-3 d-flex justify-content-center align-items-center flex-column">
           <label for="categories" class="form-label w-25 text-center my-2">Categoria</label>
-          <select name="category" id="categories" class="form-control @error('category_id') is-invalid @enderror"  wire:model='category_id'>
-            <option value="" disabled selected>Seleziona una categoria</option>
+          <select name="category" id="categories" class="form-control @error('category_id') invalid @enderror"  wire:model='category_id'>
+            <option value="" selected>Seleziona una categoria</option>
             @foreach ($this->categories as $category)
             <option value="{{$category->id}}">{{$category->name}}</option>
             @endforeach
           </select>
+          @error('category_id')
+          <div class="alert2">{{ $message }}</div>
+          @enderror
           </div>
+          
 
           {{-- Select Tag --}}
           <div class="mb-3 d-flex justify-content-center align-items-center flex-column">
             <label for="tags" class="form-label w-25 text-center my-2">Tags</label>
             <h3 class="txtFont tlt text-center">Tieni premuto il tasto ctrl e seleziona i tag pertinenti alla tua storia</h3>
             
-                <select wire:model="tags_id" name="tags[]" id="tags" class="form-control @error('tags') is-invalid @enderror" multiple size="5">
+                <select wire:model="tags_id" name="tags[]" id="tags" class="form-control @error('tags_id') invalid @enderror" multiple size="5">
                     @foreach ($this->tags as $tag)
                         <option value="{{ $tag->id }}" class="tag">#{{ $tag->name }}</option>
                     @endforeach
                 </select>
+                @error('tags_id')
+                <div class="alert2">{{ $message }}</div>
+            @enderror
+            </div>
+            
                 
 
 

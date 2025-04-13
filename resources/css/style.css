@@ -168,12 +168,28 @@ body{
 }
 
 .alert{
-    margin-top: 2vw;
-    width: 20vw;
     text-align: center;
+    color: var(--tlt); 
+    font-family: russo one;
+    font-size: 1.5vw;
+    font-weight: 100 ;
+    width: fit-content;
+    position: absolute;
+    top: 6vw;
     background-color: var(--bg2);
-    color: var(--tlt);
-    border: var(--tlt) 2px solid; 
-    font-family: russo one;  
+    padding: 0.5vw;
 }
 
+.alert2{
+    width: 20vw;
+    text-align: center;
+    background-color: var(--bg3);
+    color: var(--tlt);
+    padding: 1vw;
+    font-family: russo one; 
+    font-weight: 100; 
+}
+
+.invalid{
+    border: var(--bg3) 5px solid;
+}

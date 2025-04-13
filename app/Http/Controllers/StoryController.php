@@ -30,15 +30,12 @@ class StoryController extends Controller implements HasMiddleware
         $categories = Category::all();
         $tags = Tag::all();
 
-        /* dd($tags); */
-
-        /* dd($categories); */
 
         return view('stories.writeStory', compact('categories', 'tags'));
 
     }
 
-    /* Funzione per salvare una nuova storia */
+
     
     
 
@@ -68,23 +65,8 @@ class StoryController extends Controller implements HasMiddleware
 
     }
 
-    /* funzione per aggiornare una storia */
-    public function update(Request $request, Story $story) {
-        
-        /* controllo che permette solo all'utente autore di modificare la storia (se il suo ID corrisponde allo user_id della storia) */
-        if (auth()->user()->id == $story->user_id) {
-
-            /* aggiorno il database con le modifiche */
-            $story->update([
-                'title' => $request->title,
-                'text' => $request->text,
-            ]);
-
-            return redirect()->route('homepage')->with('success', 'Storia aggiornata con successo!');
-        }
-            /* se l'utente non corrisponde: */
-        return redirect()->route('homepage')->with('error', 'Non hai il permesso per modificare questa storia!');
-    }
+   
+    
 
     /* funzione per eliminare una storia */
     public function destroy(Story $story) {

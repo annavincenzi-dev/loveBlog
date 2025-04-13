@@ -28,12 +28,18 @@
               {{-- Select Categoria --}}
               <div class="mb-3 d-flex justify-content-center align-items-center flex-column">
               <label for="categories" class="form-label w-25 text-center my-2">Categoria</label>
-              <select name="category" id="categories" class="form-control @error('category') is-invalid @enderror"  wire:model='category_id'>
-                <option value="" disabled>Seleziona una categoria</option>
+              <select name="category" id="categories" class="form-control @error('category_id') is-invalid @enderror"  wire:model='category_id'>
+                <option value="" selected>Seleziona una categoria</option>
                 @foreach ($this->categories as $category)
-                <option value="{{$category->id}}" @if($category->id == $this->story->category_id) selected @endif>{{$category->name}}</option>
+                <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
               </select>
+    
+              @error('category_id')
+              <div class="alert alert-danger">
+                  <strong>{{ $message }}</strong>
+              </div>
+              @enderror
               </div>
     
               {{-- Select Tag --}}
@@ -41,11 +47,18 @@
                 <label for="tags" class="form-label w-25 text-center my-2">Tags</label>
                 <h3 class="txtFont tlt text-center">Tieni premuto il tasto ctrl e seleziona i tag pertinenti alla tua storia</h3>
                 
-                    <select wire:model="tags_id" name="tags[]" id="tags" class="form-control @error('tags') is-invalid @enderror" multiple size="5">
+                    <select wire:model="tags_id" name="tags[]" id="tags" class="form-control @error('tags_id') is-invalid @enderror" multiple size="5">
                         @foreach ($this->tags as $tag)
-                            <option value="{{ $tag->id }}" class="tag" @if(in_array($tag->id, $this->story->tags->pluck('id')->toArray())) selected @endif>#{{ $tag->name }}</option>
+                            <option value="{{ $tag->id }}" class="tag">#{{ $tag->name }}</option>
                         @endforeach
                     </select>
+    
+                    @error('tags_id')
+                    <div class="alert">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                    @enderror
+                </div>
                     
     
     
